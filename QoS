@@ -1,0 +1,93 @@
+-- SWE2D1 e D2
+
+conf t
+
+access-list 101 permit udp 10.1.1.0 0.0.0.255 10.2.2.0 0.0.0.255
+
+class-map match-all EF
+match access-group 101
+
+policy-map SETDSCP
+class EF
+set ip dscp 46
+
+int vlan 4
+service-policy input SETDSCP
+
+class-map match-all PREMIUM
+match ip dscp 46
+class-map match-all BEST-EFFORT
+match ip dscp 0
+
+policy-map EDGE
+class PREMIUM
+priority percent 40
+class BEST-EFFORT
+police 16000 2000 2000 conform-action set-dscp-transmit 0
+
+int vlan 101
+service-policy output EDGE
+
+int vlan 102
+service-policy output EDGE
+
+
+
+-- SWL3Core
+
+conf t
+
+class-map match-all PREMIUM
+match ip dscp 46
+class-map match-all BEST-EFFORT
+match ip dscp 0
+
+policy-map EDGE
+
+class PREMIUM
+priority percent 40
+
+class BEST-EFFORT
+police 16000 2000 2000 conform-action set-dscp-transmit 0
+
+int vlan 101
+service-policy output EDGE
+
+int vlan 102
+service-policy output EDGE
+
+
+-- SWL3D1E3 e D2
+
+conf t
+
+access-list 101 permit udp 10.2.2.0 0.0.0.255 10.1.1.0 0.0.0.255
+
+class-map match-all EF
+match access-group 101
+
+policy-map SETDSCP
+class EF
+set ip dscp 46
+
+int vlan 5
+service-policy input SETDSCP
+
+class-map match-all PREMIUM
+match ip dscp 46
+class-map match-all BEST-EFFORT
+match ip dscp 0
+
+policy-map EDGE
+class PREMIUM
+priority percent 40
+class BEST-EFFORT
+police 16000 2000 2000 conform-action set-dscp-transmit 0
+
+int vlan 101
+service-policy output EDGE
+
+int vlan 102
+service-policy output EDGE
+
+

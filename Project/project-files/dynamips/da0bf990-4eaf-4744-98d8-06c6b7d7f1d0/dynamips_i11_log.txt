@@ -1,0 +1,25 @@
+May 01 10:51:17.739 HYPERVISOR: Release 0.2.17-amd64/Linux (tag 2017072410)
+May 01 10:51:17.739 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 54917.
+May 01 10:51:17.750 HYPERVISOR: exec_cmd: hypervisor version 
+May 01 10:51:17.750 HYPERVISOR: exec_cmd: hypervisor working_dir /home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips 
+May 01 10:51:17.750 GENERAL: working_dir=/home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips
+May 01 10:51:17.750 HYPERVISOR: exec_cmd: ethsw create SW2 
+May 01 10:51:18.365 HYPERVISOR: exec_cmd: nio create_udp udp-7f70774a-0864-407c-a52e-8c24029c1340 10003 127.0.0.1 10002 
+May 01 10:51:18.365 HYPERVISOR: exec_cmd: ethsw add_nio SW2 udp-7f70774a-0864-407c-a52e-8c24029c1340 
+May 01 10:51:18.382 HYPERVISOR: exec_cmd: ethsw set_access_port SW2 udp-7f70774a-0864-407c-a52e-8c24029c1340 1 
+May 01 10:51:19.777 HYPERVISOR: exec_cmd: nio create_udp udp-a13da755-37cf-419e-8029-1382944fb7de 10040 127.0.0.1 10041 
+May 01 10:51:19.778 HYPERVISOR: exec_cmd: ethsw add_nio SW2 udp-a13da755-37cf-419e-8029-1382944fb7de 
+May 01 10:51:19.789 HYPERVISOR: exec_cmd: ethsw set_dot1q_port SW2 udp-a13da755-37cf-419e-8029-1382944fb7de 1 
+May 01 10:51:20.098 HYPERVISOR: exec_cmd: nio create_udp udp-c9ee4695-cf18-47c1-b838-4431432fec46 10047 127.0.0.1 10046 
+May 01 10:51:20.099 HYPERVISOR: exec_cmd: ethsw add_nio SW2 udp-c9ee4695-cf18-47c1-b838-4431432fec46 
+May 01 10:51:20.110 HYPERVISOR: exec_cmd: ethsw set_access_port SW2 udp-c9ee4695-cf18-47c1-b838-4431432fec46 1 
+May 01 10:51:20.560 HYPERVISOR: exec_cmd: nio create_udp udp-2287a7ea-0f4a-4bd6-bae3-dbf57d75e715 10058 127.0.0.1 10059 
+May 01 10:51:20.560 HYPERVISOR: exec_cmd: ethsw add_nio SW2 udp-2287a7ea-0f4a-4bd6-bae3-dbf57d75e715 
+May 01 10:51:20.573 HYPERVISOR: exec_cmd: ethsw set_dot1q_port SW2 udp-2287a7ea-0f4a-4bd6-bae3-dbf57d75e715 1 
+May 01 10:51:21.772 HYPERVISOR: exec_cmd: nio create_udp udp-ef449720-39ae-4acd-9524-231c82f5af0f 10089 127.0.0.1 10088 
+May 01 10:51:21.773 HYPERVISOR: exec_cmd: ethsw add_nio SW2 udp-ef449720-39ae-4acd-9524-231c82f5af0f 
+May 01 10:51:21.779 HYPERVISOR: exec_cmd: ethsw set_access_port SW2 udp-ef449720-39ae-4acd-9524-231c82f5af0f 4 
+May 01 13:37:36.129 HYPERVISOR: exec_cmd: ethsw delete SW2 
+May 01 13:37:36.277 HYPERVISOR: exec_cmd: hypervisor stop 
+May 01 13:37:36.324 HYPERVISOR: Stopped.
+May 01 13:37:36.324 GENERAL: reset done.

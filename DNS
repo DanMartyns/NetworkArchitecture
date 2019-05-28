@@ -1,0 +1,50 @@
+cd /etc/bind
+
+sudo vim named.conf.local
+zone "FutureMedicalRD.pt" in{
+	type master;
+	file "/etc/bind/db.FutureMedicalRD.pt";
+}
+
+zone "FutureMedicalRD.com" in{
+	type master;
+	file "/etc/bind/db.FutureMedicalRD.com";
+}
+
+sudo vim db.FutureMedical.pt
+$TTL 604800
+$ORIGIN FutureMedicalRD.pt.
+@	IN	SOA	ns1.FutureMedicalRD.pt adm.FutureMedicalRD.pt. (
+			2	; Serial
+			604800	; Refresh
+			86400	; Retry
+			2419200	; Expire
+			604800	) ; Negative Cache TTL
+	IN	NS	ns1.FutureMedicalRD.pt.
+	IN	A	10.9.0.3
+	IN	AAAA	3100:1:1:900::3
+ns1	IN	A	10.9.0.3
+server1	IN	A	10.9.0.3
+server2	IN	CNAME	server1	
+
+sudo vi db.FutureMedical.com
+$TTL 604800
+$ORIGIN FutureMedicalRD.com.
+@	IN	SOA	ns1.FutureMedicalRD.com adm.FutureMedicalRD.com. (
+			2	; Serial
+			604800	; Refresh
+			86400	; Retry
+			2419200	; Expire
+			604800	) ; Negative Cache TTL
+	IN	NS	ns1.FutureMedicalRD.com.
+	IN	A	10.9.0.3
+	IN	AAAA	3100:1:1:900::3
+ns1	IN	A	10.9.0.3
+server1	IN	A	10.9.0.3
+server2	IN	CNAME	server1 
+
+service bind9 restart
+
+dnssec-keygen -a RSASHA1 -b 512 -n ZONE FutureMedicalRD.pt
+dnssec-keygen -a RSASHA1 -b 512 -n ZONE -f KSK FutureMedicalRD.pt
+

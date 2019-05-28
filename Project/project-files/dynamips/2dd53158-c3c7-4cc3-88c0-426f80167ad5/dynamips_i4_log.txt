@@ -1,0 +1,74 @@
+Apr 23 22:41:09.617 HYPERVISOR: Release 0.2.18-amd64/Linux (tag 2018033112)
+Apr 23 22:41:09.617 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 40887.
+Apr 23 22:41:09.626 HYPERVISOR: exec_cmd: hypervisor version 
+Apr 23 22:41:09.627 HYPERVISOR: exec_cmd: hypervisor working_dir /home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips 
+Apr 23 22:41:09.627 GENERAL: working_dir=/home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips
+Apr 23 22:41:09.627 HYPERVISOR: exec_cmd: hypervisor working_dir /home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips/f6a2b760-71f8-4e91-aaa1-172ef29a9ffd 
+Apr 23 22:41:09.627 GENERAL: working_dir=/home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips/f6a2b760-71f8-4e91-aaa1-172ef29a9ffd
+Apr 23 22:41:09.627 HYPERVISOR: exec_cmd: vm create SWC1 1 c3725 
+Apr 23 22:41:09.628 VM: VM SWC1 created.
+Apr 23 22:41:09.628 HYPERVISOR: exec_cmd: vm set_con_tcp_port SWC1 5001 
+Apr 23 22:41:09.628 HYPERVISOR: exec_cmd: c3725 get_mac_addr SWC1 
+Apr 23 22:41:09.629 HYPERVISOR: exec_cmd: vm set_disk0 SWC1 1 
+Apr 23 22:41:09.629 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:41:09.630 HYPERVISOR: exec_cmd: vm set_idle_pc SWC1 0x60a68e70 
+Apr 23 22:41:09.631 HYPERVISOR: exec_cmd: vm set_ios SWC1 /home/armando/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+Apr 23 22:41:09.631 HYPERVISOR: exec_cmd: c3725 set_mac_addr SWC1 c201.1f2e.0000 
+Apr 23 22:41:09.632 HYPERVISOR: exec_cmd: vm set_nvram SWC1 256 
+Apr 23 22:41:09.632 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:41:09.633 HYPERVISOR: exec_cmd: vm slot_add_binding SWC1 1 0 NM-16ESW 
+Apr 23 22:41:09.634 HYPERVISOR: exec_cmd: vm set_con_tcp_port SWC1 5001 
+Apr 23 22:41:10.303 HYPERVISOR: exec_cmd: nio create_udp udp-185cc9b4-cd46-497b-a6cf-a85bab2a602b 10010 127.0.0.1 10011 
+Apr 23 22:41:10.328 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWC1 0 0 udp-185cc9b4-cd46-497b-a6cf-a85bab2a602b 
+Apr 23 22:41:10.328 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:41:10.452 HYPERVISOR: exec_cmd: nio create_udp udp-e93f0e02-1598-4803-a9b4-d11bad6964ca 10016 127.0.0.1 10017 
+Apr 23 22:41:10.453 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWC1 0 1 udp-e93f0e02-1598-4803-a9b4-d11bad6964ca 
+Apr 23 22:41:10.454 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:41:10.808 HYPERVISOR: exec_cmd: nio create_udp udp-c2845b44-72bb-43ac-a787-e27450147ce4 10034 127.0.0.1 10035 
+Apr 23 22:41:10.810 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWC1 1 6 udp-c2845b44-72bb-43ac-a787-e27450147ce4 
+Apr 23 22:41:10.811 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:41:10.910 HYPERVISOR: exec_cmd: nio create_udp udp-bdb71e60-f058-41d8-8f9d-462cf68c9c6b 10040 127.0.0.1 10041 
+Apr 23 22:41:10.912 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWC1 1 0 udp-bdb71e60-f058-41d8-8f9d-462cf68c9c6b 
+Apr 23 22:41:10.912 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:41:11.318 HYPERVISOR: exec_cmd: nio create_udp udp-d71a5782-3834-42f2-9c23-2501976ca731 10060 127.0.0.1 10061 
+Apr 23 22:41:11.320 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWC1 1 1 udp-d71a5782-3834-42f2-9c23-2501976ca731 
+Apr 23 22:41:11.320 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:41:11.503 HYPERVISOR: exec_cmd: nio create_udp udp-edacce77-6050-4a69-8acd-fec419965092 10066 127.0.0.1 10067 
+Apr 23 22:41:11.505 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWC1 1 2 udp-edacce77-6050-4a69-8acd-fec419965092 
+Apr 23 22:41:11.505 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:41:11.647 HYPERVISOR: exec_cmd: nio create_udp udp-60dacebd-f076-4701-8b91-bc0ac317406b 10072 127.0.0.1 10073 
+Apr 23 22:41:11.649 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWC1 1 3 udp-60dacebd-f076-4701-8b91-bc0ac317406b 
+Apr 23 22:41:11.650 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:41:11.780 HYPERVISOR: exec_cmd: nio create_udp udp-d5a95971-700b-4a6b-bd1e-7b97895e5174 10078 127.0.0.1 10079 
+Apr 23 22:41:11.782 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWC1 1 4 udp-d5a95971-700b-4a6b-bd1e-7b97895e5174 
+Apr 23 22:41:11.783 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:41:11.925 HYPERVISOR: exec_cmd: nio create_udp udp-e776a787-3d95-4ed5-93e3-1b3f4adde5a7 10084 127.0.0.1 10085 
+Apr 23 22:41:11.928 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWC1 1 5 udp-e776a787-3d95-4ed5-93e3-1b3f4adde5a7 
+Apr 23 22:41:11.928 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:58:04.824 HYPERVISOR: exec_cmd: vm create Ghost 0 c3725 
+Apr 23 22:58:04.824 VM: VM Ghost created.
+Apr 23 22:58:04.831 HYPERVISOR: exec_cmd: vm set_ios Ghost /home/armando/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+Apr 23 22:58:04.834 HYPERVISOR: exec_cmd: vm set_ghost_status Ghost 1 
+Apr 23 22:58:04.836 HYPERVISOR: exec_cmd: vm set_ghost_file Ghost '/home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips/c3725-advipservicesk9-mz.124-21.image-128.ghost' 
+Apr 23 22:58:04.837 HYPERVISOR: exec_cmd: vm get_status Ghost 
+Apr 23 22:58:04.838 HYPERVISOR: exec_cmd: vm set_config Ghost configs/i0_startup-config.cfg 
+Apr 23 22:58:04.839 HYPERVISOR: exec_cmd: vm start Ghost 
+Apr 23 22:58:05.042 HYPERVISOR: exec_cmd: vm clean_delete Ghost 
+Apr 23 22:58:05.242 VM: VM Ghost shutdown.
+Apr 23 22:58:05.242 VM: VM Ghost destroyed.
+Apr 23 22:58:05.246 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 22:58:05.247 HYPERVISOR: exec_cmd: vm set_config SWC1 configs/i1_startup-config.cfg 
+Apr 23 22:58:05.247 HYPERVISOR: exec_cmd: vm start SWC1 
+Apr 23 23:10:29.232 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 23:10:29.233 HYPERVISOR: exec_cmd: vm stop SWC1 
+Apr 23 23:10:29.473 VM: VM SWC1 shutdown.
+Apr 23 23:10:29.474 HYPERVISOR: exec_cmd: vm extract_config SWC1 
+Apr 23 23:10:38.568 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 23:10:38.568 HYPERVISOR: exec_cmd: vm extract_config SWC1 
+Apr 23 23:10:38.966 HYPERVISOR: exec_cmd: vm get_status SWC1 
+Apr 23 23:10:38.966 HYPERVISOR: exec_cmd: vm extract_config SWC1 
+Apr 23 23:10:39.010 HYPERVISOR: exec_cmd: vm delete SWC1 
+Apr 23 23:10:39.010 VM: VM SWC1 destroyed.
+Apr 23 23:10:39.011 HYPERVISOR: exec_cmd: hypervisor stop 
+Apr 23 23:10:39.285 HYPERVISOR: Stopped.
+Apr 23 23:10:39.285 GENERAL: reset done.

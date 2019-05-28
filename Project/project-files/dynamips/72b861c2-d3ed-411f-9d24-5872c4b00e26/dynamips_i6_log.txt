@@ -1,0 +1,59 @@
+Apr 23 22:41:09.693 HYPERVISOR: Release 0.2.18-amd64/Linux (tag 2018033112)
+Apr 23 22:41:09.693 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 40889.
+Apr 23 22:41:09.702 HYPERVISOR: exec_cmd: hypervisor version 
+Apr 23 22:41:09.703 HYPERVISOR: exec_cmd: hypervisor working_dir /home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips 
+Apr 23 22:41:09.703 GENERAL: working_dir=/home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips
+Apr 23 22:41:09.703 HYPERVISOR: exec_cmd: hypervisor working_dir /home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips/806ba38b-d35a-4020-8510-f64ebf4a6447 
+Apr 23 22:41:09.703 GENERAL: working_dir=/home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips/806ba38b-d35a-4020-8510-f64ebf4a6447
+Apr 23 22:41:09.703 HYPERVISOR: exec_cmd: vm create SWE1D1 3 c3725 
+Apr 23 22:41:09.704 VM: VM SWE1D1 created.
+Apr 23 22:41:09.704 HYPERVISOR: exec_cmd: vm set_con_tcp_port SWE1D1 5009 
+Apr 23 22:41:09.704 HYPERVISOR: exec_cmd: c3725 get_mac_addr SWE1D1 
+Apr 23 22:41:09.704 HYPERVISOR: exec_cmd: vm set_disk0 SWE1D1 1 
+Apr 23 22:41:09.705 HYPERVISOR: exec_cmd: vm get_status SWE1D1 
+Apr 23 22:41:09.705 HYPERVISOR: exec_cmd: vm set_idle_pc SWE1D1 0x60a68e70 
+Apr 23 22:41:09.706 HYPERVISOR: exec_cmd: vm set_ios SWE1D1 /home/armando/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+Apr 23 22:41:09.706 HYPERVISOR: exec_cmd: c3725 set_mac_addr SWE1D1 c203.1f56.0000 
+Apr 23 22:41:09.706 HYPERVISOR: exec_cmd: vm set_nvram SWE1D1 256 
+Apr 23 22:41:09.707 HYPERVISOR: exec_cmd: vm get_status SWE1D1 
+Apr 23 22:41:09.707 HYPERVISOR: exec_cmd: vm slot_add_binding SWE1D1 1 0 NM-16ESW 
+Apr 23 22:41:10.924 HYPERVISOR: exec_cmd: nio create_udp udp-11ab4858-13a4-4a6f-a229-2b185097921c 10042 127.0.0.1 10043 
+Apr 23 22:41:10.948 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWE1D1 1 0 udp-11ab4858-13a4-4a6f-a229-2b185097921c 
+Apr 23 22:41:10.948 HYPERVISOR: exec_cmd: vm get_status SWE1D1 
+Apr 23 22:41:11.057 HYPERVISOR: exec_cmd: nio create_udp udp-997a79aa-78d9-43dd-b96f-d89afbe2622f 10048 127.0.0.1 10049 
+Apr 23 22:41:11.058 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWE1D1 1 1 udp-997a79aa-78d9-43dd-b96f-d89afbe2622f 
+Apr 23 22:41:11.059 HYPERVISOR: exec_cmd: vm get_status SWE1D1 
+Apr 23 22:41:11.205 HYPERVISOR: exec_cmd: nio create_udp udp-d640f224-3ab6-402f-9eb3-981ab5b405ee 10054 127.0.0.1 10055 
+Apr 23 22:41:11.207 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWE1D1 0 0 udp-d640f224-3ab6-402f-9eb3-981ab5b405ee 
+Apr 23 22:41:11.207 HYPERVISOR: exec_cmd: vm get_status SWE1D1 
+Apr 23 22:49:12.024 HYPERVISOR: exec_cmd: nio create_udp udp-c40b1cb6-667a-4047-b416-97e2697dd4f0 10138 127.0.0.1 10139 
+Apr 23 22:49:12.026 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWE1D1 1 2 udp-c40b1cb6-667a-4047-b416-97e2697dd4f0 
+Apr 23 22:49:12.027 HYPERVISOR: exec_cmd: vm get_status SWE1D1 
+Apr 23 22:50:21.916 HYPERVISOR: exec_cmd: vm set_ios SWE1D1 /home/armando/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+Apr 23 22:58:05.729 HYPERVISOR: exec_cmd: vm create Ghost 0 c3725 
+Apr 23 22:58:05.729 VM: VM Ghost created.
+Apr 23 22:58:05.730 HYPERVISOR: exec_cmd: vm set_ios Ghost /home/armando/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+Apr 23 22:58:05.733 HYPERVISOR: exec_cmd: vm set_ghost_status Ghost 1 
+Apr 23 22:58:05.733 HYPERVISOR: exec_cmd: vm set_ghost_file Ghost '/home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips/c3725-advipservicesk9-mz.124-21.image-128.ghost' 
+Apr 23 22:58:05.734 HYPERVISOR: exec_cmd: vm get_status Ghost 
+Apr 23 22:58:05.734 HYPERVISOR: exec_cmd: vm set_config Ghost configs/i0_startup-config.cfg 
+Apr 23 22:58:05.734 HYPERVISOR: exec_cmd: vm start Ghost 
+Apr 23 22:58:05.777 HYPERVISOR: exec_cmd: vm clean_delete Ghost 
+Apr 23 22:58:05.977 VM: VM Ghost shutdown.
+Apr 23 22:58:05.977 VM: VM Ghost destroyed.
+Apr 23 22:58:05.992 HYPERVISOR: exec_cmd: vm get_status SWE1D1 
+Apr 23 22:58:05.995 HYPERVISOR: exec_cmd: vm set_config SWE1D1 configs/i3_startup-config.cfg 
+Apr 23 22:58:05.995 HYPERVISOR: exec_cmd: vm start SWE1D1 
+Apr 23 23:10:29.363 HYPERVISOR: exec_cmd: vm get_status SWE1D1 
+Apr 23 23:10:29.364 HYPERVISOR: exec_cmd: vm stop SWE1D1 
+Apr 23 23:10:29.512 VM: VM SWE1D1 shutdown.
+Apr 23 23:10:29.516 HYPERVISOR: exec_cmd: vm extract_config SWE1D1 
+Apr 23 23:10:38.569 HYPERVISOR: exec_cmd: vm get_status SWE1D1 
+Apr 23 23:10:38.570 HYPERVISOR: exec_cmd: vm extract_config SWE1D1 
+Apr 23 23:10:39.091 HYPERVISOR: exec_cmd: vm get_status SWE1D1 
+Apr 23 23:10:39.092 HYPERVISOR: exec_cmd: vm extract_config SWE1D1 
+Apr 23 23:10:39.094 HYPERVISOR: exec_cmd: vm delete SWE1D1 
+Apr 23 23:10:39.094 VM: VM SWE1D1 destroyed.
+Apr 23 23:10:39.095 HYPERVISOR: exec_cmd: hypervisor stop 
+Apr 23 23:10:39.332 HYPERVISOR: Stopped.
+Apr 23 23:10:39.332 GENERAL: reset done.

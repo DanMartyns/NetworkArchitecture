@@ -1,0 +1,212 @@
+----------------------
+|        SWC1        |
+----------------------
+configure terminal
+
+router ospf 1
+redistribute ospf 2 subnets
+exit
+router ospf 2 
+default-information originate always 
+exit
+
+service dhcp
+
+interface FastEthernet 1/6
+ip helper-address 10.9.0.3
+
+interface FastEthernet 1/7
+no switchport  
+ip helper-address 10.9.0.3
+ip address 10.10.24.1 255.255.255.192
+ip ospf 2 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A18::1/66
+ipv6 ospf 2 area 0
+no shutdown
+exit
+interface FastEthernet 1/9
+no switchport
+ip helper-address 10.9.0.3
+ip address 10.10.24.65 255.255.255.192
+ip ospf 2 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A18:4000::1/66 	
+ipv6 ospf 2 area 0
+no shutdown
+
+end
+write
+
+----------------------
+|        SWC2        |
+----------------------
+configure terminal
+
+router ospf 1
+redistribute ospf 2 subnets
+exit
+router ospf 2 
+default-information originate always
+
+service dhcp
+
+interface FastEthernet 1/6
+ip helper-address 10.9.0.3
+
+interface FastEthernet 1/7
+no switchport
+ip helper-address 10.9.0.3
+ip address 10.10.24.129 255.255.255.192
+ip ospf 2 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A18:8000::1/66
+ipv6 ospf 2 area 0
+no shutdown
+exit
+interface FastEthernet 1/9
+no switchport
+ip helper-address 10.9.0.3
+ip address 10.10.24.193 255.255.255.192
+ip ospf 2 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A18:c000::1/66
+ipv6 ospf 2 area 0
+no shutdown
+
+end 
+write
+
+----------------------
+|      DHCP_SW1      |
+----------------------
+configure terminal
+service dhcp
+
+router ospf 2
+	
+ipv6 unicast-routing 
+ip routing
+
+interface FastEthernet 0/0
+ip helper-address 10.9.0.3
+ip address 10.10.24.2 255.255.255.192
+ip ospf 2 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A18::2/66
+ipv6 ospf 2 area 0
+no shutdown
+
+interface FastEthernet 0/1
+ip helper-address 10.9.0.3
+ip address 10.10.24.130 255.255.255.192
+ip ospf 2 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A18:8000::2/66
+ipv6 ospf 2 area 0
+no shutdown
+
+interface f1/0
+no switchport
+ip address 10.9.0.1 255.255.255.0
+ipv6 enable
+ipv6 address 3100:1:1:900::1/64 
+no shutdown
+
+end 
+write
+
+----------------------
+|      DHCP_SW2      |
+----------------------
+configure terminal
+service dhcp
+
+router ospf 2
+
+ipv6 unicast-routing 
+ip routing 
+
+interface FastEthernet 0/0
+ip helper-address 10.9.0.3
+ip address 10.10.24.66 255.255.255.192
+ip ospf 2 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A18:4000::2/66
+ipv6 ospf 2 area 0
+no shutdown 
+
+interface FastEthernet 0/1
+ip helper-address 10.9.0.3
+ip address 10.10.24.194 255.255.255.192
+ip ospf 2 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A18:c000::2/66
+ipv6 ospf 2 area 0
+no shutdown
+
+interface f1/0
+no switch eth1 port
+ip address 10.9.0.2 255.255.255.0
+ipv6 enable
+ipv6 address 3100:1:1:900::2/64
+no shutdown
+
+end
+write
+
+----------------------
+|       DHCPv4       |
+----------------------
+sudo ifconfig eth1 10.9.0.3/24
+sudo ifconfig eth1 inet6 add 3100:1:1:900::3/64
+sudo route add default gw 10.9.0.1
+--------------
+cd ../../etc/default
+sudo vim isc-dhcp-server
+INTERFACES="eth1"
+--------------
+cd ../dhcp
+sudo vim dhcpd.conf
+
+option domain-name-servers 10.9.0.3;
+subnet 10.0.0.0 netmask 255.255.255.0 {
+	range 10.0.0.20 10.0.0.100;
+	option routers 10.0.0.1;
+	option subnet-mask 255.255.255.0;
+	default-lease-time 700;
+	max-lease-time 3600;
+}
+
+subnet 10.2.2.0 netmask 255.255.255.0 {
+	range 10.2.2.20 10.2.2.100;
+	option routers 10.2.2.1;
+	option subnet-mask 255.255.255.0;
+	default-lease-time 700;
+	max-lease-time 3600;
+}
+
+subnet 10.9.0.0 netmask 255.255.255.0 {
+	range 10.9.0.20 10.9.0.100;
+	option routers 10.9.0.1;
+	option subnet-mask 255.255.255.0;
+	default-lease-time 700;
+	max-lease-time 3600;
+}
+
+subnet 10.1.0.0 netmask 255.255.255.0 {
+	range 10.1.0.20 10.1.0.100;
+	range6 3100:1:1:100::20 3100:1:1:100::100;
+	option routers 10.1.0.1;
+	option subnet-mask 255.255.255.0;
+	default-lease-time 700;
+	max-lease-time 3600;
+}
+
+sudo service isc-dhcp-server restart
+sudo service isc-dhcp-server stop
+
+ip helper-address 10.9.0.3
+netstat -lnut
+
+ip DHCP

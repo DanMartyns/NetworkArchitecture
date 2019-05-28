@@ -1,0 +1,150 @@
+#SWL3C1
+vlan database
+vlan 101 name VLAN101
+exit
+
+configure terminal
+ipv6 unicast-routing
+ip routing
+router ospf 1
+exit
+
+interface f0/0
+ip address 10.10.2.2 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A02::2/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface f0/1
+ip address 10.10.4.2 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A04::2/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface range f1/0 - 5
+switchport trunk allowed vlan 1,101,1002-1005
+switchport mode trunk
+
+interface f1/6
+no switchport
+ip address 10.10.6.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A06::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface f1/8
+no switchport
+ip address 10.10.26.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A1A::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface vlan 1
+ip address 10.3.0.101 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:300::101/64
+ipv6 ospf 1 area 0
+no shutdown
+
+interface vlan 101
+ip address 10.10.22.11 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A16::11/64
+ipv6 ospf 1 area 0
+no shutdown 
+exit
+
+access-list 101 permit ip 10.0.0.0 0.0.0.255 10.64.0.0 0.0.0.255
+
+route-map ForceRouting permit 10
+match ip address 101
+set ip next-hop 10.10.26.2
+exit
+
+#SWL3C2
+
+vlan database
+vlan 102 name VLAN102
+exit
+
+configure terminal
+ipv6 unicast-routing
+ip routing
+router ospf 1
+exit
+
+interface f0/0
+ip address 10.10.3.2 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A03::2/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface f0/1
+ip address 10.10.5.2 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A05::2/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface range f1/0 - 5
+switchport trunk allowed vlan 1,102,1002-1005
+switchport mode trunk
+
+interface f1/6
+no switchport
+ip address 10.10.6.2 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A06::2/127 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface f1/8
+no switchport
+ip address 10.10.27.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A1B::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface vlan 1
+ip address 10.3.0.102 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:300::102/64
+ipv6 ospf 1 area 0
+no shutdown
+
+interface vlan 102
+ip address 10.10.23.11 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A17::11/64
+ipv6 ospf 1 area 0
+no shutdown
+
+access-list 101 permit ip 10.0.0.0 0.0.0.255 10.64.0.0 0.0.0.255
+
+route-map ForceRouting permit 10
+match ip address 101
+set ip next-hop 10.10.27.2
+exit
+
+interface f1/0 - 5
+ip policy route-map ForceRouting
+end 
+write

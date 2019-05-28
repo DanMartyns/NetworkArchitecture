@@ -1,0 +1,16 @@
+Apr 23 22:41:09.585 HYPERVISOR: Release 0.2.18-amd64/Linux (tag 2018033112)
+Apr 23 22:41:09.585 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 60131.
+Apr 23 22:41:09.594 HYPERVISOR: exec_cmd: hypervisor version 
+Apr 23 22:41:09.594 HYPERVISOR: exec_cmd: hypervisor working_dir /home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips 
+Apr 23 22:41:09.594 GENERAL: working_dir=/home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips
+Apr 23 22:41:09.595 HYPERVISOR: exec_cmd: ethsw create Internet 
+Apr 23 22:41:10.030 HYPERVISOR: exec_cmd: nio create_udp udp-7c186df1-4366-4355-9494-0728e66bc1d6 10001 127.0.0.1 10000 
+Apr 23 22:41:10.030 HYPERVISOR: exec_cmd: ethsw add_nio Internet udp-7c186df1-4366-4355-9494-0728e66bc1d6 
+Apr 23 22:41:10.045 HYPERVISOR: exec_cmd: ethsw set_access_port Internet udp-7c186df1-4366-4355-9494-0728e66bc1d6 1 
+Apr 23 22:41:10.153 HYPERVISOR: exec_cmd: nio create_udp udp-0aa358b7-d44d-4120-8dd9-091c24d6fd74 10004 127.0.0.1 10005 
+Apr 23 22:41:10.154 HYPERVISOR: exec_cmd: ethsw add_nio Internet udp-0aa358b7-d44d-4120-8dd9-091c24d6fd74 
+Apr 23 22:41:10.165 HYPERVISOR: exec_cmd: ethsw set_access_port Internet udp-0aa358b7-d44d-4120-8dd9-091c24d6fd74 1 
+Apr 23 23:10:38.686 HYPERVISOR: exec_cmd: ethsw delete Internet 
+Apr 23 23:10:38.718 HYPERVISOR: exec_cmd: hypervisor stop 
+Apr 23 23:10:38.735 HYPERVISOR: Stopped.
+Apr 23 23:10:38.735 GENERAL: reset done.

@@ -1,0 +1,39 @@
+May 17 17:58:51.111 HYPERVISOR: Release 0.2.17-amd64/Linux (tag 2017072410)
+May 17 17:58:51.111 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 53993.
+May 17 17:58:51.122 HYPERVISOR: exec_cmd: hypervisor version 
+May 17 17:58:51.122 HYPERVISOR: exec_cmd: hypervisor working_dir /home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips 
+May 17 17:58:51.122 GENERAL: working_dir=/home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips
+May 17 17:58:51.123 HYPERVISOR: exec_cmd: hypervisor working_dir /home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips/a23434cc-e713-4068-9611-611714c63853 
+May 17 17:58:51.123 GENERAL: working_dir=/home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips/a23434cc-e713-4068-9611-611714c63853
+May 17 17:58:51.123 HYPERVISOR: exec_cmd: vm create MW 13 c3725 
+May 17 17:58:51.123 VM: VM MW created.
+May 17 17:58:51.124 HYPERVISOR: exec_cmd: vm set_con_tcp_port MW 5071 
+May 17 17:58:51.124 HYPERVISOR: exec_cmd: c3725 get_mac_addr MW 
+May 17 17:58:51.125 HYPERVISOR: exec_cmd: vm get_status MW 
+May 17 17:58:51.125 HYPERVISOR: exec_cmd: vm slot_add_binding MW 1 0 NM-1FE-TX 
+May 17 17:58:51.126 HYPERVISOR: exec_cmd: vm set_ios MW /home/daniel/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+May 17 17:58:51.127 HYPERVISOR: exec_cmd: c3725 set_mac_addr MW c20d.14e4.0000 
+May 17 17:58:51.127 HYPERVISOR: exec_cmd: vm set_disk0 MW 0 
+May 17 17:58:51.128 HYPERVISOR: exec_cmd: vm get_status MW 
+May 17 17:58:51.128 HYPERVISOR: exec_cmd: vm set_idle_pc MW 0x60a68ca0 
+May 17 17:58:51.129 HYPERVISOR: exec_cmd: vm set_nvram MW 256 
+May 17 17:58:54.552 HYPERVISOR: exec_cmd: nio create_udp udp-359ce1cc-f695-4941-b269-da8550fc73b1 10036 127.0.0.1 10037 
+May 17 17:58:54.576 HYPERVISOR: exec_cmd: vm slot_add_nio_binding MW 0 0 udp-359ce1cc-f695-4941-b269-da8550fc73b1 
+May 17 17:58:54.577 HYPERVISOR: exec_cmd: vm get_status MW 
+May 17 17:58:57.035 HYPERVISOR: exec_cmd: nio create_udp udp-eb1d298d-b7a4-45ae-a174-704d0fe42200 10106 127.0.0.1 10107 
+May 17 17:58:57.036 HYPERVISOR: exec_cmd: vm slot_add_nio_binding MW 0 1 udp-eb1d298d-b7a4-45ae-a174-704d0fe42200 
+May 17 17:58:57.037 HYPERVISOR: exec_cmd: vm get_status MW 
+May 17 18:00:23.666 HYPERVISOR: exec_cmd: vm create Ghost 0 c3725 
+May 17 18:00:23.666 VM: VM Ghost created.
+May 17 18:00:23.712 HYPERVISOR: exec_cmd: vm set_ios Ghost /home/daniel/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+May 17 18:00:23.714 HYPERVISOR: exec_cmd: vm set_ghost_status Ghost 1 
+May 17 18:00:23.716 HYPERVISOR: exec_cmd: vm set_ghost_file Ghost '/home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips/c3725-advipservicesk9-mz.124-21.image-128.ghost' 
+May 17 18:00:23.728 HYPERVISOR: exec_cmd: vm get_status Ghost 
+May 17 18:00:23.744 HYPERVISOR: exec_cmd: vm set_config Ghost configs/i0_startup-config.cfg 
+May 17 18:00:23.745 HYPERVISOR: exec_cmd: vm start Ghost 
+May 17 18:00:23.965 HYPERVISOR: exec_cmd: vm clean_delete Ghost 
+May 17 18:00:24.166 VM: VM Ghost shutdown.
+May 17 18:00:24.166 VM: VM Ghost destroyed.
+May 17 18:00:24.170 HYPERVISOR: exec_cmd: vm get_status MW 
+May 17 18:00:24.173 HYPERVISOR: exec_cmd: vm set_config MW configs/i13_startup-config.cfg 
+May 17 18:00:24.174 HYPERVISOR: exec_cmd: vm start MW 

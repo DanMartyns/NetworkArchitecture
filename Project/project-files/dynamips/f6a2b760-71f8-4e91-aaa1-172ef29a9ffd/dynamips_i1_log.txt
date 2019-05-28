@@ -1,0 +1,55 @@
+Apr 23 22:41:09.509 HYPERVISOR: Release 0.2.18-amd64/Linux (tag 2018033112)
+Apr 23 22:41:09.509 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 35229.
+Apr 23 22:41:09.519 HYPERVISOR: exec_cmd: hypervisor version 
+Apr 23 22:41:09.519 HYPERVISOR: exec_cmd: hypervisor working_dir /home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips 
+Apr 23 22:41:09.519 GENERAL: working_dir=/home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips
+Apr 23 22:41:09.520 HYPERVISOR: exec_cmd: hypervisor working_dir /home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips/64f4d328-e4fe-4007-b82d-9f4dbb0123e9 
+Apr 23 22:41:09.520 GENERAL: working_dir=/home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips/64f4d328-e4fe-4007-b82d-9f4dbb0123e9
+Apr 23 22:41:09.520 HYPERVISOR: exec_cmd: vm create R2 8 c3725 
+Apr 23 22:41:09.520 VM: VM R2 created.
+Apr 23 22:41:09.521 HYPERVISOR: exec_cmd: vm set_con_tcp_port R2 5023 
+Apr 23 22:41:09.521 HYPERVISOR: exec_cmd: c3725 get_mac_addr R2 
+Apr 23 22:41:09.521 HYPERVISOR: exec_cmd: vm set_disk0 R2 0 
+Apr 23 22:41:09.522 HYPERVISOR: exec_cmd: vm get_status R2 
+Apr 23 22:41:09.522 HYPERVISOR: exec_cmd: vm set_idle_pc R2 0x60a68e70 
+Apr 23 22:41:09.523 HYPERVISOR: exec_cmd: vm set_ios R2 /home/armando/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+Apr 23 22:41:09.524 HYPERVISOR: exec_cmd: c3725 set_mac_addr R2 c208.1f88.0000 
+Apr 23 22:41:09.524 HYPERVISOR: exec_cmd: vm set_nvram R2 256 
+Apr 23 22:41:09.525 HYPERVISOR: exec_cmd: vm get_status R2 
+Apr 23 22:41:09.525 HYPERVISOR: exec_cmd: vm slot_add_binding R2 1 0 NM-1FE-TX 
+Apr 23 22:41:10.179 HYPERVISOR: exec_cmd: nio create_udp udp-6206d09f-4f6e-4710-80c1-63a68edeb302 10006 127.0.0.1 10007 
+Apr 23 22:41:10.208 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 1 0 udp-6206d09f-4f6e-4710-80c1-63a68edeb302 
+Apr 23 22:41:10.209 HYPERVISOR: exec_cmd: vm get_status R2 
+Apr 23 22:41:10.469 HYPERVISOR: exec_cmd: nio create_udp udp-25edb73e-2eae-47a1-84f5-ca86dc02c37e 10018 127.0.0.1 10019 
+Apr 23 22:41:10.472 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 0 0 udp-25edb73e-2eae-47a1-84f5-ca86dc02c37e 
+Apr 23 22:41:10.473 HYPERVISOR: exec_cmd: vm get_status R2 
+Apr 23 22:41:10.721 HYPERVISOR: exec_cmd: nio create_udp udp-11f6bdd5-8bd3-4abe-8984-09963ae95979 10030 127.0.0.1 10031 
+Apr 23 22:41:10.723 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 0 1 udp-11f6bdd5-8bd3-4abe-8984-09963ae95979 
+Apr 23 22:41:10.724 HYPERVISOR: exec_cmd: vm get_status R2 
+Apr 23 22:58:03.987 HYPERVISOR: exec_cmd: vm create Ghost 0 c3725 
+Apr 23 22:58:03.988 VM: VM Ghost created.
+Apr 23 22:58:03.989 HYPERVISOR: exec_cmd: vm set_ios Ghost /home/armando/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+Apr 23 22:58:03.990 HYPERVISOR: exec_cmd: vm set_ghost_status Ghost 1 
+Apr 23 22:58:03.990 HYPERVISOR: exec_cmd: vm set_ghost_file Ghost '/home/armando/Desktop/UA/3ºAno/AR/ar_projeto_17-18/Project/project-files/dynamips/c3725-advipservicesk9-mz.124-21.image-128.ghost' 
+Apr 23 22:58:03.991 HYPERVISOR: exec_cmd: vm get_status Ghost 
+Apr 23 22:58:03.992 HYPERVISOR: exec_cmd: vm set_config Ghost configs/i0_startup-config.cfg 
+Apr 23 22:58:03.993 HYPERVISOR: exec_cmd: vm start Ghost 
+Apr 23 22:58:04.200 HYPERVISOR: exec_cmd: vm clean_delete Ghost 
+Apr 23 22:58:04.401 VM: VM Ghost shutdown.
+Apr 23 22:58:04.401 VM: VM Ghost destroyed.
+Apr 23 22:58:04.406 HYPERVISOR: exec_cmd: vm get_status R2 
+Apr 23 22:58:04.410 HYPERVISOR: exec_cmd: vm set_config R2 configs/i8_startup-config.cfg 
+Apr 23 22:58:04.410 HYPERVISOR: exec_cmd: vm start R2 
+Apr 23 23:10:29.222 HYPERVISOR: exec_cmd: vm get_status R2 
+Apr 23 23:10:29.226 HYPERVISOR: exec_cmd: vm stop R2 
+Apr 23 23:10:29.346 VM: VM R2 shutdown.
+Apr 23 23:10:29.348 HYPERVISOR: exec_cmd: vm extract_config R2 
+Apr 23 23:10:38.557 HYPERVISOR: exec_cmd: vm get_status R2 
+Apr 23 23:10:38.558 HYPERVISOR: exec_cmd: vm extract_config R2 
+Apr 23 23:10:38.825 HYPERVISOR: exec_cmd: vm get_status R2 
+Apr 23 23:10:38.826 HYPERVISOR: exec_cmd: vm extract_config R2 
+Apr 23 23:10:38.826 HYPERVISOR: exec_cmd: vm delete R2 
+Apr 23 23:10:38.826 VM: VM R2 destroyed.
+Apr 23 23:10:38.827 HYPERVISOR: exec_cmd: hypervisor stop 
+Apr 23 23:10:39.158 HYPERVISOR: Stopped.
+Apr 23 23:10:39.158 GENERAL: reset done.

@@ -1,0 +1,40 @@
+May 01 10:51:17.849 HYPERVISOR: Release 0.2.17-amd64/Linux (tag 2017072410)
+May 01 10:51:17.849 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 34003.
+May 01 10:51:17.860 HYPERVISOR: exec_cmd: hypervisor version 
+May 01 10:51:17.860 HYPERVISOR: exec_cmd: hypervisor working_dir /home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips 
+May 01 10:51:17.860 GENERAL: working_dir=/home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips
+May 01 10:51:17.860 HYPERVISOR: exec_cmd: hypervisor working_dir /home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips/2dd53158-c3c7-4cc3-88c0-426f80167ad5 
+May 01 10:51:17.860 GENERAL: working_dir=/home/daniel/Documentos/Universidade/3Ano/2ºSemestre/ArquiteturaRedes/ar_projeto_17-18/Project/project-files/dynamips/2dd53158-c3c7-4cc3-88c0-426f80167ad5
+May 01 10:51:17.861 HYPERVISOR: exec_cmd: vm create SWE1D2 4 c3725 
+May 01 10:51:17.861 VM: VM SWE1D2 created.
+May 01 10:51:17.861 HYPERVISOR: exec_cmd: vm set_con_tcp_port SWE1D2 5030 
+May 01 10:51:17.862 HYPERVISOR: exec_cmd: c3725 get_mac_addr SWE1D2 
+May 01 10:51:17.862 HYPERVISOR: exec_cmd: c3725 set_mac_addr SWE1D2 c204.1f65.0000 
+May 01 10:51:17.863 HYPERVISOR: exec_cmd: vm set_ios SWE1D2 /home/daniel/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+May 01 10:51:17.863 HYPERVISOR: exec_cmd: vm get_status SWE1D2 
+May 01 10:51:17.863 HYPERVISOR: exec_cmd: vm set_idle_pc SWE1D2 0x60a68e70 
+May 01 10:51:17.864 HYPERVISOR: exec_cmd: vm set_nvram SWE1D2 256 
+May 01 10:51:17.864 HYPERVISOR: exec_cmd: vm set_disk0 SWE1D2 1 
+May 01 10:51:17.865 HYPERVISOR: exec_cmd: vm get_status SWE1D2 
+May 01 10:51:17.865 HYPERVISOR: exec_cmd: vm slot_add_binding SWE1D2 1 0 NM-16ESW 
+May 01 10:51:19.318 HYPERVISOR: exec_cmd: nio create_udp udp-063be55c-8929-4c48-aa51-add338227d86 10028 127.0.0.1 10029 
+May 01 10:51:19.342 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWE1D2 1 2 udp-063be55c-8929-4c48-aa51-add338227d86 
+May 01 10:51:19.343 HYPERVISOR: exec_cmd: vm get_status SWE1D2 
+May 01 10:51:21.314 HYPERVISOR: exec_cmd: nio create_udp udp-5093a0df-7bfe-4f01-a8d4-c6055e7c07b0 10076 127.0.0.1 10077 
+May 01 10:51:21.316 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWE1D2 0 0 udp-5093a0df-7bfe-4f01-a8d4-c6055e7c07b0 
+May 01 10:51:21.316 HYPERVISOR: exec_cmd: vm get_status SWE1D2 
+May 01 10:51:22.385 HYPERVISOR: exec_cmd: nio create_udp udp-b9ae2d23-ef1b-492e-8578-17e527aa5403 10108 127.0.0.1 10109 
+May 01 10:51:22.388 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWE1D2 1 1 udp-b9ae2d23-ef1b-492e-8578-17e527aa5403 
+May 01 10:51:22.388 HYPERVISOR: exec_cmd: vm get_status SWE1D2 
+May 01 10:51:24.102 HYPERVISOR: exec_cmd: nio create_udp udp-897a67f3-3c36-4bc5-ad82-e57ddc44992b 10168 127.0.0.1 10169 
+May 01 10:51:24.104 HYPERVISOR: exec_cmd: vm slot_add_nio_binding SWE1D2 1 0 udp-897a67f3-3c36-4bc5-ad82-e57ddc44992b 
+May 01 10:51:24.104 HYPERVISOR: exec_cmd: vm get_status SWE1D2 
+May 01 13:37:36.102 HYPERVISOR: exec_cmd: vm get_status SWE1D2 
+May 01 13:37:36.104 HYPERVISOR: exec_cmd: vm extract_config SWE1D2 
+May 01 13:37:36.488 HYPERVISOR: exec_cmd: vm get_status SWE1D2 
+May 01 13:37:36.489 HYPERVISOR: exec_cmd: vm extract_config SWE1D2 
+May 01 13:37:36.531 HYPERVISOR: exec_cmd: vm delete SWE1D2 
+May 01 13:37:36.531 VM: VM SWE1D2 destroyed.
+May 01 13:37:36.531 HYPERVISOR: exec_cmd: hypervisor stop 
+May 01 13:37:36.986 HYPERVISOR: Stopped.
+May 01 13:37:36.986 GENERAL: reset done.

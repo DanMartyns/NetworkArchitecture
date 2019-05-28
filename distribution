@@ -1,0 +1,565 @@
+----------CHANGE SWITCHPORTS TO ROUTING
+----------SWE1D1 SWE1D2 SWE3D1 SWE3D2 
+----------- interface f1/0 ligado ao SWC1 SWITCHING
+----------- interface f1/1 ligado ao SWC2 SWITCHING
+----------- interface f0/0 ligado entre SW Distribuição ROUTING
+
+-------------------------------------------------------------
+------------------------SWC1 e SWC2--------------------------
+
+----------- interface f0/0 ligado ao R1 ROUTING
+----------- interface f0/1 ligado ao R2 ROUTING
+
+----------- interface f1/0 ligado ao SWE1D1 SWITCHING
+----------- interface f1/1 ligado ao SWE1D2 SWITCHING
+----------- interface f1/2 ligado ao SWE2D1 SWITCHING
+----------- interface f1/3 ligado ao SWE2D2 SWITCHING
+----------- interface f1/4 ligado ao SWE3D1 SWITCHING
+----------- interface f1/5 ligado ao SWE3D2 SWITCHING
+
+----------- interface f1/6 ligado entre SWC ROUTING
+
+----------- interface f1/7 ligado ao Datacenter Publico ROUTING
+----------- interface f1/8 ligado ao Datacenter Privado ROUTING
+
+configure terminal 
+interface f1/6
+no switchport
+no shutdown
+exit
+interface f1/7
+no switchport
+no shutdown
+exit
+interface f1/8
+no switchport
+no shutdown
+end 
+write
+
+
+-------------------------------------------------------------
+------------------------------------------------------ SWE1D1 
+vlan database
+vlan 2 name SupTec
+vlan 3 name ServMed
+vlan 101 
+vlan 102
+exit
+
+configure terminal
+ipv6 unicast-routing
+ip routing
+router ospf 1
+passive-interface Vlan 1
+exit
+
+interface f1/2
+switchport mode trunk
+switchport trunk allowed vlan 1,2,3,1002-1005
+no shutdown
+exit
+
+interface vlan 1 
+ip address 10.3.0.1 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:300::1/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 2
+ip address 10.0.0.1 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1::1/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 3 
+ip address 10.1.0.1 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:100::1/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 101
+ip address 10.10.22.1 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A16::1/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 102
+ip address 10.10.23.1 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A17::1/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f0/0
+ip address 10.10.19.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A13::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f1/0
+switchport mode trunk
+switchport trunk allowed vlan 1,101,1002-1005 
+no shutdown
+exit
+
+interface f1/1
+switchport mode trunk
+switchport trunk allowed vlan 1,102,1002-1005
+no shutdown
+end
+write
+
+---------------------- Tunnel para microwaves ------
+interface Tunnel 0 
+ip unnumbered FastEthernet0/0
+tunnel source FastEthernet0/0
+tunnel destination 10.10.4.1
+tunnel mode ipip
+
+ip route 10.64.0.0 255.255.255.0 Tunnel 0 10.10.4.1
+
+
+
+-------------------------------------------------------------
+------------------------------------------------------ SWE1D2 
+vlan database
+vlan 2 name SupTec
+vlan 3 name ServMed
+vlan 101 
+vlan 102
+exit
+
+configure terminal
+ip routing
+ipv6 unicast-routing
+router ospf 1
+passive-interface Vlan 1
+exit
+
+interface f1/2
+switchport mode trunk
+switchport trunk allowed vlan 1,2,3,1002-1005
+no shutdown
+exit
+
+interface vlan 1 
+ip address 10.3.0.2 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:300::2/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 2
+ip address 10.0.0.2 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1::2/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 3 
+ip address 10.1.0.2 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:100::2/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 101
+ip address 10.10.22.2 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A16::2/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 102
+ip address 10.10.23.2 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A17::2/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f0/0
+ip address 10.10.19.2 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A13::2/64 
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f1/0
+switchport mode trunk
+switchport trunk allowed vlan 1,101,1002-1005 
+no shutdown
+exit
+
+interface f1/1
+switchport mode trunk
+switchport trunk allowed vlan 1,102,1002-1005
+no shutdown
+end
+
+write
+
+---------------------- Tunnel para microwaves ------
+configure terminal
+
+interface Tunnel 1 
+ip unnumbered FastEthernet0/0
+tunnel source FastEthernet0/0
+tunnel destination 10.10.4.1
+tunnel mode ipip
+
+ip route 10.64.0.0 255.255.255.0 Tunnel 1 10.10.4.1
+
+-------------------------------------------------------------
+------------------------------------------------------ SWE2D1 
+vlan database
+vlan 4 ServMed
+vlan 101
+vlan 102 
+exit
+
+configure terminal
+ip routing
+ipv6 unicast-routing
+router ospf 1
+passive-interface Vlan 1
+exit
+
+interface f1/2
+switchport mode trunk
+switchport trunk allowed vlan 1,4,1002-1005
+no shutdown
+exit
+
+interface vlan 1 
+ip address 10.3.0.3 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:300::3/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 4
+ip address 10.1.1.1 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:101::1/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 101
+ip address 10.10.22.3 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A16::3/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 102
+ip address 10.10.23.3 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A17::3/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f0/0
+ip address 10.10.20.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A14::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f1/0
+switchport mode trunk
+switchport trunk allowed vlan 1,101,1002-1005 
+no shutdown
+exit
+
+interface f1/1
+switchport mode trunk
+switchport trunk allowed vlan 1,102,1002-1005
+no shutdown
+end
+
+write 
+
+
+
+-------------------------------------------------------------
+------------------------------------------------------ SWE2D2
+vlan database
+vlan 4 name ServMed
+vlan 101
+vlan 102 
+exit
+
+configure terminal
+ip routing
+ipv6 unicast-routing
+router ospf 1
+passive-interface Vlan 1
+end
+
+interface f1/2
+switchport mode trunk
+switchport trunk allowed vlan 1,4,1002-1005
+no shutdown
+exit
+
+interface vlan 1 
+ip address 10.3.0.4 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:300::4/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 4
+ip address 10.1.1.2 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:101::2/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 101
+ip address 10.10.22.4 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A16::4/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 102
+ip address 10.10.23.4 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A17::4/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f0/0
+ip address 10.10.20.2 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A14::2/64 
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f1/0
+switchport mode trunk
+switchport trunk allowed vlan 1,101,1002-1005 
+no shutdown
+exit
+
+interface f1/1
+switchport mode trunk
+switchport trunk allowed vlan 1,102,1002-1005
+no shutdown
+end
+
+write 
+
+
+
+-------------------------------------------------------------
+------------------------------------------------------ SWE3D1
+vlan database
+vlan 5 name Inv
+vlan 101
+vlan 102 
+exit
+
+configure terminal
+ip routing
+ipv6 unicast-routing
+router ospf 1
+passive-interface Vlan 1
+exit
+
+interface f1/2
+switchport mode trunk
+switchport trunk allowed vlan 1,5,1002-1005
+no shutdown
+exit
+
+interface vlan 1 
+ip address 10.3.0.5 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:300::5/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 5
+ip address 10.2.2.1 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:202::1/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 101
+ip address 10.10.22.5 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A16::5/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 102
+ip address 10.10.23.5 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A17::5/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f0/0
+ip address 10.10.21.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A15::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f1/0
+switchport mode trunk
+switchport trunk allowed vlan 1,101,1002-1005 
+no shutdown
+exit
+
+interface f1/1
+switchport mode trunk
+switchport trunk allowed vlan 1,102,1002-1005
+no shutdown
+end
+
+write 
+
+
+-------------------------------------------------------------
+------------------------------------------------------ SWE3D2
+vlan database
+vlan 5 name Inv
+vlan 101
+vlan 102 
+exit
+
+configure terminal
+ip routing
+ipv6 unicast-routing
+router ospf 1
+passive-interface Vlan 1
+exit
+
+interface f1/2
+switchport mode trunk
+switchport trunk allowed vlan 1,5,1002-1005
+no shutdown
+exit
+
+interface vlan 1 
+ip address 10.3.0.6 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:300::6/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 5
+ip address 10.2.2.2 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:202::2/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 101
+ip address 10.10.22.6 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A16::6/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface vlan 102
+ip address 10.10.23.6 255.255.255.0
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A17::6/64
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f0/0
+ip address 10.10.21.2 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A15::2/64 
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+interface f1/0
+switchport mode trunk
+switchport trunk allowed vlan 1,101,1002-1005 
+no shutdown
+exit
+
+interface f1/1
+switchport mode trunk
+switchport trunk allowed vlan 1,102,1002-1005
+no shutdown
+end
+
+write 

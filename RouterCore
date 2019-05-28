@@ -1,0 +1,204 @@
+#R1
+
+configure terminal
+ipv6 unicast-routing
+ip routing
+router ospf 1
+exit
+ 
+interface f0/0
+ip address 10.10.2.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A02::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface f0/1
+ip address 10.10.3.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A03::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface f1/0 
+ip address 100.0.0.1 255.255.255.0
+no shutdown
+
+interface f2/0
+ip address 10.10.1.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A01::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+exit
+
+configure terminal
+router ospf 1
+network 10.0.0.0 0.31.255.255 area 0
+
+
+default-information originate always metric 10
+ip route 0.0.0.0 0.0.0.0 f1/0
+
+--- SNAT ---
+
+access-list 1 permit 10.0.0.0 0.31.255.255
+ip nat pool POOLR 100.1.0.96 100.1.0.111 netmask 255.255.255.240
+
+ip nat Stateful id 1
+primary 10.10.31.1
+peer 10.10.30.1
+mapping-id 10
+
+ip nat inside source list 1 pool POOLR mapping-id 10 overload
+
+---------
+
+interface Loopback0
+ip address 10.10.30.1 255.255.255.0
+ipv6 address 3100:1:1:A24::1/64
+no shutdown
+
+router ipv6 ospf 1
+default-information originate always metric 5
+
+end
+write
+
+--------------------------------
+crypto isakmp policy 20
+authentication pre-share
+crypto isakmp key AR address 0.0.0.0 0.0.0.0
+crypto ipsec transform-set nss-ts esp-3des esp-sha-hmac
+crypto dynamic-map nss-dmap 10
+set transform-set nss-ts
+reverse-route
+crypto map dynamic-map 10 ipsec-isakmp dynamic nss-dmap
+interface f1/0
+crypto map dynamic-map
+
+---------------------------------
+
+
+#R2
+configure terminal
+interface f0/0
+ip address 10.10.4.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A04::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface f0/1
+ip address 10.10.5.1 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A05::1/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface f1/0 -- saida para a internet
+ip address 100.0.0.2 255.255.255.0
+no shutdown
+
+interface f2/0
+ip address 10.10.1.2 255.255.255.252
+ip ospf 1 area 0
+ipv6 enable
+ipv6 address 3100:1:1:A01::2/64 
+ipv6 ospf 1 area 0
+no shutdown
+
+interface f1/1
+ip address 10.10.25.1 255.255.255.252
+ipv6 enable
+ipv6 address 3100:1:1:A19::1/64 
+no shutdown
+
+network 10.0.0.0 0.32.255.255 area 0
+default-information originate always metric 5
+ip route 0.0.0.0 0.0.0.0 f1/0
+
+--- SNAT ---
+
+access-list 1 permit 10.0.0.0 0.31.255.255
+ip nat pool POOLR 100.1.0.96 100.1.0.111 netmask 255.255.255.240
+
+ip nat Stateful id 2
+backup 10.10.31.1
+peer 10.10.30.1
+mapping-id 10
+
+ip nat inside source list 1 pool POOLR mapping-id 10 overload
+
+---------
+
+interface Loopback0
+ip address 10.10.31.1 255.255.255.0
+ipv6 address 3100:1:1:A25::1/64
+no shutdown
+
+end
+write
+
+-----------------------------------
+
+conf t
+crypto isakmp policy 20
+authentication pre-share
+crypto isakmp key AR address 100.0.0.1
+crypto ipsec transform-set nss-ts esp-3des esp-sha-hmac
+crypto map nss-cm 10 ipsec-isakmp
+set peer 100.0.0.1
+set transform-set nss-ts
+match address nss-cm-acl
+
+interface FastEthernet1/0
+crypto map nss-cm
+ip access-list extended nss-cm-acl
+permit ip 10.0.0.0 0.31.255.255 10.64.0.0 0.0.0.255
+permit ip 10.0.0.0 0.31.255.255 10.32.0.0 0.0.0.255  
+
+--------------------------------------
+
+
+conf t
+
+interface Tunnel64
+ipv6 adress 2002:1::1/64
+tunnel source 100.0.0.2
+tunnel destination 100.0.0.4
+tunnel mode ipv6ip
+
+
+ipv6 access-list ALLOW_INTERNAL_NETWORK_TO_BOSTON
+ permit ipv6 any 3100:1:1:2000::/64
+
+route-map routeToBoston permit 10
+ match ipv6 address ALLOW_INTERNAL_NETWORK_TO_BOSTON
+ set ipv6 next-hop Tunnel64
+
+
+interface f0/0
+ ipv6 policy route-map ipv6
+
+interface f1/0
+ ipv6 policy route-map ipv6
+
+interface f2/0
+ ipv6 policy route-map ipv6
+
+conf t
+ip prefix-list Uplinks permit seq 5 3100:1:1:4000::/52
+
+route-map Routes_to_Inet
+ match ip add prefix-list Uplinks
+
+router ospf 1
+ default-information originate route-map Routes_to_Inet metric 5
+ 
+

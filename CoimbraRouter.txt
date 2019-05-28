@@ -1,0 +1,41 @@
+#C_R1
+configure terminal
+ip routing
+unicast-routing
+ 
+interface f0/0
+ip address 10.64.0.12 255.255.255.0 
+ipv6 enable
+ipv6 address 3100:1:1:4000::12/64
+no shutdown 
+
+interface f0/1
+ip address 100.0.0.3 255.255.255.0
+no shutdown
+exit
+
+ip route 10.0.0.0 255.255.255.0 10.64.0.13
+
+conf t
+crypto isakmp policy 20
+authentication pre-share
+crypto isakmp key AR address 100.0.0.1
+crypto ipsec transform-set nss-ts esp-3des esp-sha-hmac
+crypto map nss-cm 10 ipsec-isakmp
+set peer 100.0.0.1
+set transform-set nss-ts
+match address nss-cm-acl
+
+interface FastEthernet0/1
+crypto map nss-cm
+ip access-list extended nss-cm-acl
+permit ip 10.64.0.0 0.0.0.255 10.32.0.0 0.0.0.255
+permit ip 10.64.0.0 0.0.0.255 10.0.0.0 0.31.255.255  
+
+
+end 
+write
+
+
+
+
